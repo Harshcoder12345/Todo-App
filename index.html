@@ -18,10 +18,22 @@
   .fade-in{
     animation: fadeIn 1s ease-in-out;
   }
+
+  .count{
+    
+    background-color: blue;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    left: 20%;
+
+  }
 </style>
 <body>
     <nav class="navbar bg-dark text-white py-3  ">
         <div class="container fs-1 bold d-flex justify-content-center ">TO DO APP
+          <button id="counting" class="count">00</button>
           
         </div>
       </nav>
@@ -30,6 +42,7 @@
       <form >
         <input type="text" placeholder="Enter the text here" class="form-control rounded-0 p-3 my-3 " required> 
         <button class="btn btn-success w-100">Submit</button>
+        
       </form>
     
       <ul class="list-group">
@@ -37,6 +50,8 @@
      
       </ul>
     </div>
+
+    <!-- <Button class="deleteall">Delete all</Button> -->
 
     
     <script src="./main.js"></script>

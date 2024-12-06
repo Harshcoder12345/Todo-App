@@ -2,130 +2,139 @@ const form = document.querySelector('form')
 const input = document.querySelector('input')
 const ul = document.querySelector('ul')
 const body = document.querySelector('body')
+// const deleteAll = document.querySelector('.deleteall')
+
+
+// console.log(deleteAll)
+
+
+let counts = document.getElementById("counting")
+
+let a = 0
+counts.innerHTML = a;
+
+
+function Increacount() {
+    a++;
+    counts.innerHTML = a
+    console.log("Increase it")
+}
+function decrement() {
+    a--;
+    counts.innerHTML = a
+}
 
 
 
 const Submit = (e)=>{
     e.preventDefault();
 
-
+    Increacount();
     let li = document.createElement('li')
-    li.className = "list-group-item my-3 fade-in push-list"
+    li.className = "list-group-item my-2 fade-in push-list"
     li.innerText = input.value
+    li.style.color = "red"
     let button = document.createElement('button')
     button.innerText = "Delete"
     button.className = "btn btn-sm btn-danger float-end"
     li.appendChild(button)
     ul.appendChild(li)
     ul.appendChild(dltBtn)
+
+   
+    
     form.reset();
+
+   
 }
 
 const Shortbtn = document.createElement('button')
-Shortbtn.className = "btn btn-danger text-light text-centre my-2"
+Shortbtn.className = "btn btn-danger text-light text-centre"
+Shortbtn.style.position = "absolute"
 Shortbtn.innerText = "Sort";
-Shortbtn.style.width = "200px"
-
-
-
-// const ShortAlpha =()=>{
-    
-//     let listItems = document.getElementsByClassName('push-list')
-//     let empty = [];
-
-// for (let i = 0; i < listItems.length; i++) {
-//     let itemText = listItems[i].textContent
-//     empty.push(itemText)
-    
-    
-// }
-// console.log(empty)
-
-    
-// }
-
-
-// const ShortAlpha = () => {
-//     const listItems = document.getElementsByClassName('push-list');
-// const listItemsArray = Array.from(listItems);
-
-
-// Sort the array based on text content
-//  listItemsArray.sort((a, b) => {
-//   return a.textContent.localeCompare(b.textContent);
-// });
-
-// Re-append the sorted list items to the parent element
-// const parentUl = listItemsArray[0].parentElement; 
-// Assuming all list items have the same parent
-// parentUl.innerHTML = ''; 
-// Clear the parent element
-
-// listItemsArray.forEach(li => {
-//   parentUl.appendChild(li);
-// });
-// };
-
-// let sorted = empty.sort((a,b)=>{a.localeCompare(b)})
-    // console.log(sorted)
-
-
+Shortbtn.style.right = "20px"
+Shortbtn.style.top = "30px"
 
     const ShortAlpha = ()=> {
 
+        const dltBtn = ul.querySelector('.btn-primary')
+
         let listItems = document.getElementsByClassName('push-list')
-        // console.log(listItems)
+      
 
         let listItemsArray = Array.from(listItems);
-        // console.log(listItemsArray)
+        
 
         listItemsArray.sort((a,b)=>{return a.textContent.localeCompare(b.textContent)})
 
-        // console.log(listItemsArray)
+        
 
         const parentUl = listItemsArray[0].parentElement
         console.log(parentUl)
 
         parentUl.innerText = ''
 
+        if(dltBtn){
+            parentUl.appendChild(dltBtn)
+        }
+
     
         listItemsArray.forEach((li)=>{
             parentUl.appendChild(li)
         })
          
-         
-
-
-
-
 
         console.log("Sort method will run")
     }
 
 Shortbtn.addEventListener('click', ShortAlpha)
 
-ul.appendChild(Shortbtn)
+body.appendChild(Shortbtn)
 
+
+const RemoveAll = () => {
+    const dltBtn = ul.querySelector('.btn-primary'); 
+
+    
+
+
+      
+    a =0
+    counts.innerHTML = a;
+  
+    while (ul.firstChild) {
+      ul.removeChild(ul.firstChild);
+      
+    }
+  
+    if (dltBtn) {
+      ul.appendChild(dltBtn); 
+    }
+  };
+
+    
 
 
 const dltBtn = document.createElement('button')
-dltBtn.className = "btn text-center btn-primary w-50 my-2"
+dltBtn.className = "btn text-center btn-primary "
+dltBtn.style.right = "100px"
+dltBtn.style.top = "30px"
+dltBtn.style.position = "absolute"
 dltBtn.innerText = "Delete All"
 
-const RemoveAll = ()=>{
-    while(ul.firstChild){
-        ul.removeChild(ul.firstChild)
-    }
-    }
-
-    // Remove removes all the DOM element hence can't be use
 
 dltBtn.addEventListener("click", RemoveAll)
+
+form.appendChild(dltBtn)
+
+
+
 
 const Deletetask = (e)=>{
  
     if(e.target.className.includes('btn-sm')){
        e.target.parentElement.remove()
+       decrement()
     }
 
 
@@ -141,8 +150,8 @@ let ModeBtn = document.createElement('button')
 ModeBtn.innerText = "Mode"
 ModeBtn.style.position = "absolute"
 ModeBtn.className ='btn btn-secondary'
-ModeBtn.style.right = "20px"
-ModeBtn.style.top = "30px"
+ModeBtn.style.left = "20px"
+ModeBtn.style.top = "25px"
 
 body.appendChild(ModeBtn)
 // console.log(ModeBtn)
@@ -161,6 +170,8 @@ const ThemeChange = (e)=> {
     count++
 }
 ModeBtn.addEventListener("click" , ThemeChange)
+
+
 
 
 
